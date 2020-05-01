@@ -8,10 +8,20 @@
     </div>
     <div class="right">
       <ul class="nav-links">
-        <li class="nav-link">Credit Cards</li>
-        <li class="nav-link">Banking</li>
-        <li class="nav-link">Brokerages</li>
-        <li class="nav-link">Loans</li>
+        <li class="nav-link">
+          Credit Cards
+          <font-awesome-icon :icon="['fa', 'chevron-down']" size="xs" />
+        </li>
+        <li class="nav-link">
+          Banking <font-awesome-icon :icon="['fa', 'chevron-down']" size="xs" />
+        </li>
+        <li class="nav-link">
+          Brokerages
+          <font-awesome-icon :icon="['fa', 'chevron-down']" size="xs" />
+        </li>
+        <li class="nav-link">
+          Loans <font-awesome-icon :icon="['fa', 'chevron-down']" size="xs" />
+        </li>
       </ul>
     </div>
   </header>
@@ -19,7 +29,7 @@
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
 };
 </script>
 
@@ -30,7 +40,6 @@ export default {
   align-items: center;
   height: 5.7rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0 1px 1px 0;
-  /* border-bottom: 1px solid lightgray; */
   padding: 0 2.2rem;
 }
 
