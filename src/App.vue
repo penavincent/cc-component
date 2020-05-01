@@ -1,17 +1,20 @@
 <template>
   <div id="app">
     <Header />
+    <CreditCardFinder />
   </div>
 </template>
 
 <script>
 import Header from "./components/Header.vue";
+import CreditCardFinder from "./components/CreditCardFinder.vue";
 
 export default {
   name: "App",
   components: {
-    Header
-  }
+    Header,
+    CreditCardFinder,
+  },
 };
 </script>
 
@@ -33,6 +36,6 @@ body {
   box-sizing: border-box;
   min-height: 100%;
   color: #1c1d20;
-  font-family: "PT Sans", Arial, Helvetica, sans-serif;
+  font-family: "PT Sans", sans-serif;
 }
 </style>

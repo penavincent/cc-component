@@ -64,5 +64,6 @@ export default {
   font-size: 1.6rem;
   line-height: 25px;
   padding: 10px 30px;
+  cursor: pointer;
 }
 </style>
