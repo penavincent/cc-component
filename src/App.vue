@@ -13,8 +13,8 @@ export default {
   name: "App",
   components: {
     Header,
-    CreditCardFinder,
-  },
+    CreditCardFinder
+  }
 };
 </script>
 
@@ -37,5 +37,6 @@ body {
   min-height: 100%;
   color: #1c1d20;
   font-family: "PT Sans", sans-serif;
+  max-width: 1440px;
 }
 </style>
