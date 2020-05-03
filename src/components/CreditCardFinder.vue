@@ -9,7 +9,7 @@
     <div class="tiles blk__copy blk-action_tile_list">
       <div class="grid grid--int grid--mob">
         <div class="tile-wrap">
-          <ActTile text="Travel" />
+          <ActTile v-for="score in scores" :key="score.range" :text="score.range" />
         </div>
       </div>
     </div>
@@ -21,7 +21,16 @@ import ActTile from "./ActTile";
 
 export default {
   name: "CreditCardFinder",
-  components: { ActTile }
+  components: { ActTile },
+  data: () => ({
+    scores: [
+      { value: "bad", range: "300 - 579" },
+      { value: "fair", range: "580 - 669" },
+      { value: "good", range: "670 - 739" },
+      { value: "goodexcellent", range: "740 - 799" },
+      { value: "excellent", range: "800 - 850" }
+    ]
+  })
 };
 </script>
 
@@ -31,7 +40,7 @@ export default {
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 1fr 1fr;
   grid-column: 1/-1;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
   background-color: #72246c;
   margin-bottom: 1rem;
 }
