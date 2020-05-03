@@ -4,21 +4,25 @@
       <img
         class="img"
         src="https://g.foolcdn.com/static/affiliates/project/images/icons/travel.svg"
-        alt="travel icon"
+        :alt="text + ' icon'"
       />
       <img
         class="img--hover"
         src="https://g.foolcdn.com/static/affiliates/project/images/icons/travel-white.svg"
-        alt="travel icon"
+        :alt="text + ' icon'"
       />
     </div>
-    <span class="title">Travel</span>
+    <span class="title">{{text}}</span>
   </a>
 </template>
 
 <script>
 export default {
-  name: "ActTile"
+  name: "ActTile",
+  props: {
+    text: String,
+    image: String
+  }
 };
 </script>
 
