@@ -24,14 +24,14 @@ export default {
   height: 40rem;
   color: #afafaf;
   font-size: 4rem;
-  font-weight: bold;
 }
 
 .disclosure {
   height: 10rem;
   border-top: 1px solid lightgray;
   font-size: 1.4rem;
-  font-weight: normal;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .footer {

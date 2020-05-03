@@ -1,18 +1,20 @@
 <template>
-  <a class="act-tile act-tile--land">
-    <div class="img-wrap">
+  <a class="act-tile act-tile--land" @mouseover="hover = true" @mouseleave="hover = false">
+    <div class="tile__img-wrap">
       <img
-        class="img"
+        v-show="!hover"
+        class="tile__img"
         src="https://g.foolcdn.com/static/affiliates/project/images/icons/travel.svg"
         :alt="text + ' icon'"
       />
       <img
-        class="img--hover"
+        v-show="hover"
+        class="tile__img--hover"
         src="https://g.foolcdn.com/static/affiliates/project/images/icons/travel-white.svg"
         :alt="text + ' icon'"
       />
     </div>
-    <span class="title">{{text}}</span>
+    <span class="tile__title">{{text}}</span>
   </a>
 </template>
 
@@ -21,25 +23,40 @@ export default {
   name: "ActTile",
   props: {
     text: String,
-    image: String
+    image: String,
+    selected: Boolean
+  },
+  data() {
+    return {
+      hover: false
+    };
   }
 };
 </script>
 
 <style scoped>
+a {
+  font-size: 1.6rem;
+}
+
 .act-tile {
+  display: -webkit-flex;
+  display: inline-block;
   display: flex;
-  justify-content: center;
+  position: relative;
+  min-width: 23%;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
+  padding: 2rem 2rem;
   overflow: hidden;
-  background-color: #006ba6;
   border-radius: 6px;
   text-decoration: none;
   text-align: center;
-  min-width: 23%;
-  padding: 1rem;
-  box-shadow: 0 18px 20px 0 rgba(0, 0, 0, 0.2);
+  background: #006ba6;
+  color: #1c1d20;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1);
+  z-index: 5;
 }
 
 .act-tile--land {
@@ -47,26 +64,52 @@ export default {
   transition: 0.2s ease all;
 }
 
-.img-wrap {
+.act-tile--land:hover {
+  background-color: #204060;
+  color: #fff;
+}
+
+.tile__img-wrap {
+  display: none;
   width: 100%;
   text-align: center;
 }
 
-.img {
+.tile__img,
+.tile__img--hover {
   height: 56px;
   width: 56px;
 }
 
-.img--hover {
-  display: none;
-}
-
-.title {
+.tile__title {
+  position: relative;
+  align-self: center;
+  font-size: 1.6rem;
+  line-height: 1.8rem;
+  text-align: center;
 }
 
 @media (min-width: 600px) {
-  .img-wrap {
+  .tile__img-wrap {
     display: block;
+  }
+
+  .act-tile {
+    padding: 1rem;
+    box-shadow: 0 18px 20px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .tile__title {
+    margin-top: 1rem;
+    font-size: 2rem;
+    line-height: 2.4rem;
+    align-self: flex-start;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tile__title {
+    margin-top: 0;
   }
 }
 </style>
