@@ -1,43 +1,54 @@
 <template>
   <div class="container blk__copy">
-    <div v-if="step === 1" class="text">
-      <h1 class="title">Looking for a new Credit Card? Let us help you out!</h1>
-      <p
-        class="description"
-      >To help us find the best card for you, first tell us where you are at with your credit score. Pick one of the options below!</p>
-    </div>
-    <div v-if="step === 2" class="text">
-      <h1 class="title">What perks are you looking for on your next card?</h1>
-      <p
-        class="description"
-      >Whether it be traveling, getting some sweet cash back, or looking to build up your credit, we can find the card for you!</p>
-    </div>
-    <div class="tiles blk__copy blk-action_tile_list">
-      <div class="grid grid--int grid--mob">
-        <div v-if="step === 1" class="tile-wrap">
-          <ActTile
-            v-for="score in creditScores"
-            :key="score.value"
-            :text="score.display"
-            @click.native="next(score.value)"
-          />
-        </div>
-        <div v-if="step === 2" class="tile-wrap">
-          <ActTile
-            v-for="type in cardTypes"
-            :key="type.value"
-            :text="type.display"
-            :image="type.image"
-            :imageHover="type.imageHover"
-            @click.native="submit()"
-          />
+    <div v-if="step === 1" class="container controls">
+      <div class="text">
+        <h1 class="title">Looking for a new Credit Card? Let us help you out!</h1>
+        <p
+          class="description"
+        >To help us find the best card for you, first tell us where you are at with your credit score. Pick one of the options below!</p>
+      </div>
+      <div class="tiles blk__copy blk-action_tile_list">
+        <div class="grid grid--int grid--mob">
+          <div class="tile-wrap">
+            <ActTile
+              v-for="score in creditScores"
+              :key="score.value"
+              :text="score.display"
+              @click.native="next(score.value)"
+            />
+          </div>
         </div>
       </div>
     </div>
+    <div v-if="step === 2" class="container controls">
+      <div class="text">
+        <h1 class="title">What perks are you looking for on your next card?</h1>
+        <p
+          class="description"
+        >Whether it be traveling, getting some sweet cash back, or looking to build up your credit, we can find the card for you!</p>
+      </div>
+      <div class="tiles blk__copy blk-action_tile_list">
+        <div class="grid grid--int grid--mob">
+          <div class="tile-wrap">
+            <ActTile
+              v-for="type in cardTypes"
+              :key="type.value"
+              :text="type.display"
+              :image="type.image"
+              :imageHover="type.imageHover"
+              @click.native="submit(type.value)"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-if="cardsSuggested" class="container card-list"></div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 import ActTile from "./ActTile";
 import cardTypes from "../assets/cardTypes";
 import creditScores from "../assets/creditScores";
@@ -49,12 +60,26 @@ export default {
     prev() {
       --this.step;
     },
-    next(scoreChosen) {
-      this.scoreChosen = scoreChosen;
+    next(chosenScore) {
+      this.chosenScore = chosenScore;
       ++this.step;
     },
-    submit() {
-      console.log("submit");
+    async submit(chosenCardType) {
+      this.loading = true;
+      this.chosenCardType = chosenCardType;
+      axios
+        .get(
+          `${process.env.VUE_APP_API_URL}/api/recommendations?score=${this.chosenScore}&usage=${this.chosenCardType}`
+        )
+        .then(res => {
+          this.cardsSuggested = res.data;
+          console.log(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+          this.errored = err;
+        })
+        .finally(() => (this.loading = false));
     }
   },
   data: () => ({
@@ -74,11 +99,20 @@ export default {
 .container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto;
   grid-column: 1/-1;
-  padding-bottom: 2rem;
+}
+
+.controls {
   background-color: #72246c;
+  padding-bottom: 3rem;
+}
+
+.card-list {
+  min-height: 35rem;
   margin-bottom: 1rem;
+  border: 1px solid lightgray;
+  border-top: none;
 }
 
 .text {

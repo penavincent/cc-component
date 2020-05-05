@@ -13,14 +13,16 @@
           <font-awesome-icon :icon="['fa', 'chevron-down']" size="xs" />
         </li>
         <li class="nav-link">
-          Banking <font-awesome-icon :icon="['fa', 'chevron-down']" size="xs" />
+          Banking
+          <font-awesome-icon :icon="['fa', 'chevron-down']" size="xs" />
         </li>
         <li class="nav-link">
           Brokerages
           <font-awesome-icon :icon="['fa', 'chevron-down']" size="xs" />
         </li>
         <li class="nav-link">
-          Loans <font-awesome-icon :icon="['fa', 'chevron-down']" size="xs" />
+          Loans
+          <font-awesome-icon :icon="['fa', 'chevron-down']" size="xs" />
         </li>
       </ul>
     </div>
@@ -29,7 +31,7 @@
 
 <script>
 export default {
-  name: "Header",
+  name: "Header"
 };
 </script>
 
@@ -46,6 +48,10 @@ export default {
 .left {
   width: 40%;
   padding-left: 6rem;
+}
+
+img {
+  cursor: pointer;
 }
 
 .right {
