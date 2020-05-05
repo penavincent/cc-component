@@ -1,20 +1,10 @@
 <template>
   <a class="act-tile act-tile--land" @mouseover="hover = true" @mouseleave="hover = false">
-    <div class="tile__img-wrap">
-      <img
-        v-show="!hover"
-        class="tile__img"
-        src="https://g.foolcdn.com/static/affiliates/project/images/icons/travel.svg"
-        :alt="text + ' icon'"
-      />
-      <img
-        v-show="hover"
-        class="tile__img--hover"
-        src="https://g.foolcdn.com/static/affiliates/project/images/icons/travel-white.svg"
-        :alt="text + ' icon'"
-      />
+    <div v-if="image && imageHover" class="tile__img-wrap">
+      <img v-show="!hover" class="tile__img" :src="image" :alt="text + ' icon'" />
+      <img v-show="hover" class="tile__img--hover" :src="imageHover" :alt="text + ' icon'" />
     </div>
-    <span class="tile__title">{{text}}</span>
+    <span :class="{'tile__title': true, 'textonly': !image && !imageHover}">{{text}}</span>
   </a>
 </template>
 
@@ -24,6 +14,7 @@ export default {
   props: {
     text: String,
     image: String,
+    imageHover: String,
     selected: Boolean
   },
   data() {
@@ -45,6 +36,7 @@ a {
   display: flex;
   position: relative;
   min-width: 23%;
+  min-height: 4rem;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
@@ -54,9 +46,10 @@ a {
   text-decoration: none;
   text-align: center;
   background: #006ba6;
-  color: #1c1d20;
+  color: #204060;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1);
   z-index: 5;
+  cursor: pointer;
 }
 
 .act-tile--land {
@@ -83,10 +76,14 @@ a {
 
 .tile__title {
   position: relative;
-  align-self: center;
   font-size: 1.6rem;
   line-height: 1.8rem;
   text-align: center;
+}
+
+.textonly {
+  font-size: 4rem;
+  font-weight: bold;
 }
 
 @media (min-width: 600px) {
@@ -104,6 +101,11 @@ a {
     font-size: 2rem;
     line-height: 2.4rem;
     align-self: flex-start;
+  }
+
+  .textonly {
+    font-size: 3rem;
+    font-weight: bold;
   }
 }
 

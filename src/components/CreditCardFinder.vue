@@ -1,15 +1,36 @@
 <template>
   <div class="container blk__copy">
-    <div class="text">
+    <div v-if="step === 1" class="text">
       <h1 class="title">Looking for a new Credit Card? Let us help you out!</h1>
       <p
         class="description"
       >To help us find the best card for you, first tell us where you are at with your credit score. Pick one of the options below!</p>
     </div>
+    <div v-if="step === 2" class="text">
+      <h1 class="title">What perks are you looking for on your next card?</h1>
+      <p
+        class="description"
+      >Whether it be traveling, getting some sweet cash back, or looking to build up your credit, we can find the card for you!</p>
+    </div>
     <div class="tiles blk__copy blk-action_tile_list">
       <div class="grid grid--int grid--mob">
-        <div class="tile-wrap">
-          <ActTile v-for="score in scores" :key="score.range" :text="score.range" />
+        <div v-if="step === 1" class="tile-wrap">
+          <ActTile
+            v-for="score in creditScores"
+            :key="score.value"
+            :text="score.display"
+            @click.native="next(score.value)"
+          />
+        </div>
+        <div v-if="step === 2" class="tile-wrap">
+          <ActTile
+            v-for="type in cardTypes"
+            :key="type.value"
+            :text="type.display"
+            :image="type.image"
+            :imageHover="type.imageHover"
+            @click.native="submit()"
+          />
         </div>
       </div>
     </div>
@@ -18,18 +39,33 @@
 
 <script>
 import ActTile from "./ActTile";
+import cardTypes from "../assets/cardTypes";
+import creditScores from "../assets/creditScores";
 
 export default {
   name: "CreditCardFinder",
   components: { ActTile },
+  methods: {
+    prev() {
+      --this.step;
+    },
+    next(scoreChosen) {
+      this.scoreChosen = scoreChosen;
+      ++this.step;
+    },
+    submit() {
+      console.log("submit");
+    }
+  },
   data: () => ({
-    scores: [
-      { value: "bad", range: "300 - 579" },
-      { value: "fair", range: "580 - 669" },
-      { value: "good", range: "670 - 739" },
-      { value: "goodexcellent", range: "740 - 799" },
-      { value: "excellent", range: "800 - 850" }
-    ]
+    creditScores,
+    cardTypes,
+    step: 1,
+    chosenScore: null,
+    chosenCardType: null,
+    loading: false,
+    errored: false,
+    cardsSuggested: null
   })
 };
 </script>
