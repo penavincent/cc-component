@@ -110,6 +110,10 @@ body {
   grid-template-columns: 1fr;
 }
 
+.wag {
+  display: none;
+}
+
 @media (min-width: 768px) {
   .copy__main {
     grid-template-columns: repeat(12, 1fr);

@@ -42,7 +42,12 @@
         </div>
       </div>
     </div>
-    <div v-if="cardsSuggested" class="container card-list"></div>
+    <div v-if="cardsSuggested" class="container blk__copy card-list">
+      <div class="text">
+        <h1 class="card-intro-text">{{cardsSuggested.intro_text}}</h1>
+        <CardInfo v-if="cardsSuggested.card1" :card="cardsSuggested.card1" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -50,12 +55,14 @@
 import axios from "axios";
 
 import ActTile from "./ActTile";
+import CardInfo from "./CardInfo";
+
 import cardTypes from "../assets/cardTypes";
 import creditScores from "../assets/creditScores";
 
 export default {
   name: "CreditCardFinder",
-  components: { ActTile },
+  components: { ActTile, CardInfo },
   methods: {
     prev() {
       --this.step;
@@ -72,7 +79,7 @@ export default {
           `${process.env.VUE_APP_API_URL}/api/recommendations?score=${this.chosenScore}&usage=${this.chosenCardType}`
         )
         .then(res => {
-          this.cardsSuggested = res.data;
+          this.cardsSuggested = res.data[0];
           console.log(res.data);
         })
         .catch(err => {
@@ -109,10 +116,9 @@ export default {
 }
 
 .card-list {
-  min-height: 35rem;
+  min-height: 1rem;
   margin-bottom: 1rem;
-  border: 1px solid lightgray;
-  border-top: none;
+  border-bottom: 1px solid lightgray;
 }
 
 .text {
@@ -132,6 +138,11 @@ export default {
   font-size: 14px;
 }
 
+.card-intro-text {
+  color: #1c1d20;
+  font-size: 1.6rem;
+  font-weight: normal;
+}
 .tiles {
   grid-row: 2;
 }
