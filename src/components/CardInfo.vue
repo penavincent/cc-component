@@ -1,5 +1,5 @@
 <template>
-  <div class="card-container" :class="{'no-highlight': !expand}">
+  <div class="card-container" :class="{'no-highlights': !expand}">
     <!-- Overview: Card image, Name, Rating, and Summary -->
     <div class="card-overview">
       <img class="card-overview--img" :src="card.offer_image" :alt="card.offer_name" />
@@ -100,23 +100,24 @@ export default {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows:
-    minmax(50rem, auto) 10rem minmax(55rem, auto) minmax(65rem, auto)
+    minmax(45rem, auto) 10rem minmax(55rem, auto) minmax(65rem, auto)
     3rem 2rem;
   color: #1c1d20;
   border: none;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12);
-  padding: 1rem 2rem;
+  padding: 3rem 2rem 1rem;
   width: 25rem;
   height: auto;
 }
 
-.no-highlight {
-  grid-template-rows: minmax(50rem, auto) 10rem minmax(55rem, auto) 3rem 2rem;
+.no-highlights {
+  grid-template-rows: minmax(48rem, auto) 10rem minmax(55rem, auto) 3rem 2rem;
 }
 
 /* Overview */
 .card-overview {
   display: flex;
+  align-self: flex-start;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
@@ -221,6 +222,7 @@ export default {
   cursor: pointer;
   margin: 1rem 0;
 }
+
 /* TOS link */
 .card-tac {
   min-height: 2rem;
