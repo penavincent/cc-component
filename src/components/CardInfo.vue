@@ -55,7 +55,10 @@
       <h3 class="card-section-name">HIGHLIGHTS</h3>
       <div class="card-highlights--list" v-html="card.marketing_bullets" />
     </div>
-    <span class="card-highlights--expand" @click="$emit('expand-highlights')">Card Details [+]</span>
+    <span
+      class="card-highlights--expand"
+      @click="$emit('expand-highlights')"
+    >Card Details [{{expandIcon}}]</span>
 
     <!-- Link to card's terms and conditions -->
     <a :href="card.terms_and_conditions_link" class="card-tac" target="_blank">
@@ -79,6 +82,9 @@ export default {
   computed: {
     affiliateLink() {
       return this.card.affiliate_link && !this.card.affiliate_link_deactivate;
+    },
+    expandIcon() {
+      return this.expand ? "-" : "+";
     }
   },
   props: {
@@ -201,12 +207,12 @@ export default {
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #edeeee;
   margin-bottom: 1.5rem;
-  transition: max-height 300ms ease-in-out;
-  will-change: max-height;
 }
 
 .card-highlights--list {
   margin-left: 2rem;
+  transition: max-height 300ms ease-in-out;
+  will-change: max-height;
 }
 
 .card-highlights--expand {
