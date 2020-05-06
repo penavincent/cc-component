@@ -1,5 +1,6 @@
 <template>
   <div class="container blk__copy">
+    <!-- Step 1: Select Credit Score  -->
     <div v-if="step === 1" class="container controls">
       <div class="text">
         <h1 class="title">Looking for a new Credit Card? Let us help you out!</h1>
@@ -20,6 +21,8 @@
         </div>
       </div>
     </div>
+
+    <!-- Step 2: Select card usage and compare -->
     <div v-if="step === 2" class="container controls">
       <div class="text">
         <h1 class="title">What perks are you looking for on your next card?</h1>
@@ -42,11 +45,26 @@
         </div>
       </div>
     </div>
+
+    <!-- Card suggestions based on choices -->
     <div v-if="cardsSuggested" class="container blk__copy">
-      <div class="card-list">
+      <div
+        v-if="cardsSuggested.error_text"
+        class="card-error-text"
+        v-html="cardsSuggested.error_text"
+      />
+      <div v-else class="card-list">
         <h1 class="card-intro-text">{{cardsSuggested.intro_text}}</h1>
-        <CardInfo v-if="cardsSuggested.card1" :card="cardsSuggested.card1" class="card-details1" />
-        <CardInfo v-if="cardsSuggested.card2" :card="cardsSuggested.card2" class="card-details2" />
+        <CardInfo
+          v-if="cardsSuggested.card1 && !cardsSuggested.card1.hide_card"
+          :card="cardsSuggested.card1"
+          class="card-details1"
+        />
+        <CardInfo
+          v-if="cardsSuggested.card2 && !cardsSuggested.card2.hide_card"
+          :card="cardsSuggested.card2"
+          class="card-details2"
+        />
       </div>
     </div>
   </div>
@@ -64,6 +82,11 @@ import creditScores from "../assets/creditScores";
 export default {
   name: "CreditCardFinder",
   components: { ActTile, CardInfo },
+  computed: {
+    chosen: function(type) {
+      return this.chosenCardType === type;
+    }
+  },
   methods: {
     prev() {
       --this.step;
@@ -125,11 +148,11 @@ export default {
 }
 
 .title {
-  font-size: 48px;
+  font-size: 4.8rem;
 }
 
 .description {
-  font-size: 14px;
+  font-size: 1.4rem;
 }
 
 .card-list {
@@ -147,8 +170,15 @@ export default {
 .card-intro-text {
   grid-area: Intro;
   color: #1c1d20;
+  padding: 2rem 0;
   font-size: 1.6rem;
   font-weight: normal;
+}
+
+.card-error-text {
+  grid-column: 3/11;
+  padding: 2rem 0;
+  font-size: 1.6rem;
 }
 
 .card-details1 {

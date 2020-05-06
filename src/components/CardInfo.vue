@@ -18,10 +18,9 @@
       <p class="apply-disclaim">On {{card.issuer.possessive_name}} Secure Website</p>
     </div>
     <div v-else class="card-apply">
-      <a :href="card.review_url" class="apply-btn-wrap">
+      <a :href="card.review_url" class="apply-btn-wrap" target="_blank">
         <span class="apply-btn">Read Full Review</span>
       </a>
-      <p class="apply-disclaim">On {{card.issuer.possesive_name}} Secure Website</p>
     </div>
 
     <!-- Details: Additional details like Rewards, Annual Fees, APR, and Bonuses -->
