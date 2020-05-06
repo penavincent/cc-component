@@ -56,16 +56,18 @@
       />
       <div v-else class="card-list">
         <h1 class="card-intro-text">{{cardsSuggested.intro_text}}</h1>
-        <CardInfo
-          v-if="cardsSuggested.card1 && !cardsSuggested.card1.hide_card"
-          :card="cardsSuggested.card1"
-          class="card-details1"
-        />
-        <CardInfo
-          v-if="cardsSuggested.card2 && !cardsSuggested.card2.hide_card"
-          :card="cardsSuggested.card2"
-          class="card-details2"
-        />
+        <div class="card-details-wrap">
+          <CardInfo
+            v-if="cardsSuggested.card1 && !cardsSuggested.card1.hide_card"
+            :card="cardsSuggested.card1"
+            class="card-details1"
+          />
+          <CardInfo
+            v-if="cardsSuggested.card2 && !cardsSuggested.card2.hide_card"
+            :card="cardsSuggested.card2"
+            class="card-details2"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -166,8 +168,7 @@ export default {
   grid-template-columns: 1fr;
   grid-template-areas:
     "Intro"
-    "Card1"
-    "Card2";
+    "Cards";
   grid-column: 2/12;
   min-height: 1rem;
   margin-bottom: 1rem;
@@ -191,6 +192,15 @@ export default {
   margin: 0 auto;
 }
 
+.card-details-wrap {
+  display: grid;
+  grid-area: Cards;
+  grid-auto-rows: 1fr;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "Card1"
+    "Card2";
+}
 .card-details1 {
   grid-area: Card1;
   justify-self: center;
@@ -236,10 +246,15 @@ export default {
   .card-list {
     display: grid;
     grid-template-rows: minmax(5rem, 15rem) 1fr;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-template-areas:
-      "Intro Intro"
-      "Card1 Card2";
+      "Intro"
+      "Cards";
+  }
+
+  .card-details-wrap {
+    grid-auto-columns: 1fr;
+    grid-template-areas: "Card1 Card2";
   }
 }
 
@@ -261,7 +276,7 @@ export default {
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 2560px) {
   .container-text {
     -ms-grid-column-start: 4;
     -ms-grid-column-span: 7;

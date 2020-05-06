@@ -215,4 +215,10 @@ export default {
     width: 36rem;
   }
 }
+
+@media (min-width: 2560px) {
+  .card-container {
+    width: 40rem;
+  }
+}
 </style>
