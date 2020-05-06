@@ -113,16 +113,21 @@ a {
     line-height: 2.4rem;
     align-self: flex-start;
   }
-
-  .textonly {
-    font-size: 3rem;
-    font-weight: bold;
-  }
 }
 
 @media (min-width: 1024px) {
   .tile__title {
     margin-top: 0;
+  }
+
+  .textonly {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .textonly {
+    font-size: 2rem;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container grid grid--int">
+  <div class="grid grid--int container">
     <p class="breadcrumbs">The Ascent > Any Page</p>
     <p class="ad-disc">Advertiser Disclosure</p>
   </div>
@@ -28,5 +28,11 @@ export default {
   text-align: right;
   padding: 1rem 8rem 0 0;
   grid-row: 1;
+}
+
+@media (max-width: 768px) {
+  .container {
+    display: none;
+  }
 }
 </style>

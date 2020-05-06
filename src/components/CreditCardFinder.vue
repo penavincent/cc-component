@@ -2,7 +2,7 @@
   <div class="container blk__copy">
     <!-- Step 1: Select Credit Score  -->
     <div v-if="step === 1" class="container controls">
-      <div class="text">
+      <div class="container-text">
         <h1 class="title">Looking for a new Credit Card? Let us help you out!</h1>
         <p
           class="description"
@@ -24,7 +24,7 @@
 
     <!-- Step 2: Select card usage and compare -->
     <div v-if="step === 2" class="container controls">
-      <div class="text">
+      <div class="container-text">
         <h1 class="title">What perks are you looking for on your next card?</h1>
         <p
           class="description"
@@ -39,6 +39,7 @@
               :text="type.display"
               :image="type.image"
               :imageHover="type.imageHover"
+              :chosen="type === chosenCardType"
               @click.native="submit(type.value)"
             />
           </div>
@@ -83,8 +84,12 @@ export default {
   name: "CreditCardFinder",
   components: { ActTile, CardInfo },
   computed: {
-    chosen: function(type) {
-      return this.chosenCardType === type;
+    isChosenType(cardType) {
+      if (this.chosenCardType) {
+        return this.chosenCardType === cardType;
+      }
+
+      return false;
     }
   },
   methods: {
@@ -138,7 +143,7 @@ export default {
   padding-bottom: 3rem;
 }
 
-.text {
+.container-text {
   color: #fff;
   grid-column: 2/12;
   grid-row: 1;
@@ -148,11 +153,11 @@ export default {
 }
 
 .title {
-  font-size: 4.8rem;
+  font-size: 3.4rem;
 }
 
 .description {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 .card-list {
@@ -212,10 +217,18 @@ export default {
     grid-gap: 2rem;
     padding: 1rem 8% 2rem;
   }
+
+  .title {
+    font-size: 4.8rem;
+  }
+
+  .description {
+    font-size: 1.4rem;
+  }
 }
 
 @media (min-width: 1024px) {
-  .text {
+  .container-text {
     grid-column: 3/11;
   }
 
@@ -225,10 +238,14 @@ export default {
 }
 
 @media (min-width: 1440px) {
-  .text {
+  .container-text {
     -ms-grid-column-start: 4;
     -ms-grid-column-span: 7;
     grid-column: 4 / 10;
+  }
+
+  .blk-action_tile_list {
+    grid-column: 3 / 11;
   }
 }
 </style>

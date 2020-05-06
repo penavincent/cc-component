@@ -72,4 +72,21 @@ img {
   padding: 10px 30px;
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .left {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+  }
+
+  .right {
+    display: none;
+  }
+
+  img {
+    margin: 0 auto;
+  }
+}
 </style>

@@ -38,4 +38,28 @@ export default {
   color: #fff;
   background-color: #3b3d42;
 }
+
+@media (max-width: 768px) {
+  .dummy {
+    font-size: 2.5rem;
+  }
+
+  .disclosure {
+    font-size: 1rem;
+    height: 8rem;
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .dummy {
+    font-size: 2rem;
+  }
+
+  .disclosure {
+    font-size: 0.8rem;
+    height: 5rem;
+    padding: 0 2rem;
+  }
+}
 </style>
