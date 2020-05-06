@@ -1,5 +1,5 @@
 <template>
-  <div class="card-container">
+  <div class="card-container" :class="{'no-highlight': !expand}">
     <!-- Overview: Card image, Name, Rating, and Summary -->
     <div class="card-overview">
       <img class="card-overview--img" :src="card.offer_image" :alt="card.offer_name" />
@@ -51,10 +51,11 @@
     </div>
 
     <!-- Highlights: Marketing points for the card -->
-    <div class="card-highlights">
+    <div v-if="expand" class="card-highlights">
       <h3 class="card-section-name">HIGHLIGHTS</h3>
       <div class="card-highlights--list" v-html="card.marketing_bullets" />
     </div>
+    <span class="card-highlights--expand" @click="$emit('expand-highlights')">Card Details [+]</span>
 
     <!-- Link to card's terms and conditions -->
     <a :href="card.terms_and_conditions_link" class="card-tac" target="_blank">
@@ -81,7 +82,8 @@ export default {
     }
   },
   props: {
-    card: Object
+    card: Object,
+    expand: Boolean
   }
 };
 </script>
@@ -92,13 +94,18 @@ export default {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows:
-    minmax(50rem, auto) 10rem minmax(55rem, auto) minmax(55rem, auto)
-    2rem;
+    minmax(50rem, auto) 10rem minmax(55rem, auto) minmax(65rem, auto)
+    3rem 2rem;
   color: #1c1d20;
   border: none;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12);
   padding: 1rem 2rem;
   width: 25rem;
+  height: auto;
+}
+
+.no-highlight {
+  grid-template-rows: minmax(50rem, auto) 10rem minmax(55rem, auto) 3rem 2rem;
 }
 
 /* Overview */
@@ -188,17 +195,26 @@ export default {
   min-height: 10rem;
 }
 
+/* Card Highlight */
 .card-highlights {
   font-size: 1.4rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #edeeee;
   margin-bottom: 1.5rem;
+  transition: max-height 300ms ease-in-out;
+  will-change: max-height;
 }
 
 .card-highlights--list {
   margin-left: 2rem;
 }
 
+.card-highlights--expand {
+  font-size: 1.4rem;
+  color: #ac145a;
+  cursor: pointer;
+  margin: 1rem 0;
+}
 /* TOS link */
 .card-tac {
   min-height: 2rem;

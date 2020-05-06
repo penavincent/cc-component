@@ -59,13 +59,17 @@
         <div class="card-details-wrap">
           <CardInfo
             v-if="cardsSuggested.card1 && !cardsSuggested.card1.hide_card"
+            :expand="highlights"
             :card="cardsSuggested.card1"
             class="card-details1"
+            @expand-highlights="highlights = !highlights"
           />
           <CardInfo
             v-if="cardsSuggested.card2 && !cardsSuggested.card2.hide_card"
+            :expand="highlights"
             :card="cardsSuggested.card2"
             class="card-details2"
+            @expand-highlights="highlights = !highlights"
           />
         </div>
       </div>
@@ -127,7 +131,8 @@ export default {
     chosenCardType: null,
     loading: false,
     errored: false,
-    cardsSuggested: null
+    cardsSuggested: null,
+    highlights: false
   })
 };
 </script>
