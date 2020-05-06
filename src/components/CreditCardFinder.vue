@@ -163,11 +163,12 @@ export default {
 .card-list {
   display: grid;
   grid-template-rows: minmax(5rem, 15rem) 1fr;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-areas:
-    "Intro Intro"
-    "Card1 Card2";
-  grid-column: 3/11;
+    "Intro"
+    "Card1"
+    "Card2";
+  grid-column: 2/12;
   min-height: 1rem;
   margin-bottom: 1rem;
 }
@@ -178,20 +179,26 @@ export default {
   padding: 2rem 0;
   font-size: 1.6rem;
   font-weight: normal;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .card-error-text {
   grid-column: 3/11;
   padding: 2rem 0;
   font-size: 1.6rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .card-details1 {
   grid-area: Card1;
+  justify-self: center;
 }
 
 .card-details2 {
   grid-area: Card2;
+  justify-self: center;
 }
 
 .tiles {
@@ -225,6 +232,15 @@ export default {
   .description {
     font-size: 1.4rem;
   }
+
+  .card-list {
+    display: grid;
+    grid-template-rows: minmax(5rem, 15rem) 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "Intro Intro"
+      "Card1 Card2";
+  }
 }
 
 @media (min-width: 1024px) {
@@ -235,6 +251,14 @@ export default {
   .tile-wrap {
     padding: 0 17.3%;
   }
+
+  .card-list {
+    grid-column: 3/11;
+  }
+
+  .card-error-text {
+    grid-column: 3/11;
+  }
 }
 
 @media (min-width: 1440px) {
@@ -244,8 +268,12 @@ export default {
     grid-column: 4 / 10;
   }
 
-  .blk-action_tile_list {
-    grid-column: 3 / 11;
+  .card-list {
+    grid-column: 4/10;
+  }
+
+  .card-error-text {
+    grid-row: 4/10;
   }
 }
 </style>

@@ -98,7 +98,7 @@ export default {
   border: none;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12);
   padding: 1rem 2rem;
-  width: 36rem;
+  width: 25rem;
 }
 
 /* Overview */
@@ -202,5 +202,17 @@ export default {
 /* TOS link */
 .card-tac {
   min-height: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .card-container {
+    width: 28rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .card-container {
+    width: 36rem;
+  }
 }
 </style>
