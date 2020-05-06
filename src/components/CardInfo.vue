@@ -92,11 +92,13 @@ export default {
   display: -ms-grid;
   display: grid;
   grid-template-columns: 1fr;
-  grid-auto-rows: minmax(2rem, auto);
+  grid-template-rows:
+    minmax(50rem, auto) 10rem minmax(55rem, auto) minmax(55rem, auto)
+    2rem;
   color: #1c1d20;
   border: none;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12);
-  padding: 2.4rem 2rem 2rem;
+  padding: 1rem 2rem;
   width: 36rem;
 }
 
@@ -106,7 +108,6 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  min-height: 50rem;
 }
 
 .card-overview--img {
@@ -140,7 +141,6 @@ export default {
 /* Apply Button */
 .card-apply {
   padding: 1.5rem 0;
-  min-height: 10rem;
 }
 
 .apply-btn {
@@ -173,20 +173,20 @@ export default {
   text-align: center;
 }
 
+/* Card Details */
 .card-details {
   border-bottom: 1px solid lightgray;
   padding-bottom: 1.5rem;
   margin-bottom: 1.5rem;
-  min-height: 50rem;
 }
 
 .card-details--section {
   background-color: #edeeee;
-  padding: 1.2rem;
+  padding: 0.8rem 1.2rem;
   border-radius: 4px;
   margin-bottom: 0.8rem;
   font-size: 1.4rem;
-  min-height: 8rem;
+  min-height: 10rem;
 }
 
 .card-highlights {
@@ -194,13 +194,13 @@ export default {
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #edeeee;
   margin-bottom: 1.5rem;
-  min-height: 50rem;
 }
 
 .card-highlights--list {
   margin-left: 2rem;
 }
 
+/* TOS link */
 .card-tac {
   min-height: 2rem;
 }
