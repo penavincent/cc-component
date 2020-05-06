@@ -46,6 +46,7 @@
       <div class="text">
         <h1 class="card-intro-text">{{cardsSuggested.intro_text}}</h1>
         <CardInfo v-if="cardsSuggested.card1" :card="cardsSuggested.card1" />
+        <CardInfo v-if="cardsSuggested.card2" :card="cardsSuggested.card2" />
       </div>
     </div>
   </div>

@@ -110,6 +110,14 @@ body {
   grid-template-columns: 1fr;
 }
 
+a {
+  position: relative;
+  text-decoration: none;
+  color: #ac145a;
+  font-size: 1.6rem;
+  transition: 0.3s ease all;
+  z-index: 10;
+}
 .wag {
   display: none;
 }
