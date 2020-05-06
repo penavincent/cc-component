@@ -1,5 +1,6 @@
 <template>
   <div class="card-container">
+    <!-- Overview: Card image, Name, Rating, and Summary -->
     <div class="card-overview">
       <img class="card-overview--img" :src="card.offer_image" :alt="card.offer_name" />
       <h2 class="card-overview--title">{{card.offer_name}}</h2>
@@ -8,8 +9,10 @@
       <span v-html="card.bottom_line" class="card-overview--bottom-line"></span>
       <a class="review-link" :href="card.review_url">Read Full Review</a>
     </div>
+
+    <!-- Application: Card Apply Button -->
     <div v-if="affiliateLink" class="card-apply">
-      <a :href="card.affiliate_link" class="apply-btn-wrap">
+      <a :href="card.affiliate_link" class="apply-btn-wrap" target="_blank">
         <span class="apply-btn">Apply Now</span>
       </a>
       <p class="apply-disclaim">On {{card.issuer.possessive_name}} Secure Website</p>
@@ -20,12 +23,16 @@
       </a>
       <p class="apply-disclaim">On {{card.issuer.possesive_name}} Secure Website</p>
     </div>
+
+    <!-- Details: Additional details like Rewards, Annual Fees, APR, and Bonuses -->
     <div class="card-details">
       <div class="card-details--section">
         <h3 class="card-section-name">REWARDS</h3>
+        <p>{{card.rewards_program}}</p>
       </div>
       <div class="card-details--section">
         <h3 class="card-section-name">ANNUAL FEE</h3>
+        <p>{{card.annual_fee}}</p>
       </div>
       <div class="card-details--section">
         <h3 class="card-section-name">INTRO APR</h3>
@@ -40,8 +47,26 @@
       </div>
       <div class="card-details--section">
         <h3 class="card-section-name">BONUSES & PERKS</h3>
+        <p>{{card.bonus}}</p>
       </div>
     </div>
+
+    <!-- Highlights: Marketing points for the card -->
+    <div class="card-highlights">
+      <h3 class="card-section-name">HIGHLIGHTS</h3>
+      <div class="card-highlights--list" v-html="card.marketing_bullets" />
+    </div>
+
+    <!-- Link to card's terms and conditions -->
+    <a :href="card.terms_and_conditions_link" class="card-tac" target="_blank">
+      Rates and Fees
+      <img
+        src="https://g.foolcdn.com/static/affiliates/project/images/icon_external_link.svg"
+        alt="External Link Icon"
+        height="8px"
+        width="8px"
+      />
+    </a>
   </div>
 </template>
 
@@ -72,14 +97,16 @@ export default {
   border: none;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12);
   padding: 2.4rem 2rem 2rem;
-  width: 40rem;
+  width: 36rem;
 }
 
+/* Overview */
 .card-overview {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  min-height: 50rem;
 }
 
 .card-overview--img {
@@ -110,8 +137,10 @@ export default {
   font-weight: bold;
 }
 
+/* Apply Button */
 .card-apply {
   padding: 1.5rem 0;
+  min-height: 10rem;
 }
 
 .apply-btn {
@@ -144,11 +173,35 @@ export default {
   text-align: center;
 }
 
+.card-details {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  min-height: 50rem;
+}
+
 .card-details--section {
   background-color: #edeeee;
   padding: 1.2rem;
   border-radius: 4px;
   margin-bottom: 0.8rem;
   font-size: 1.4rem;
+  min-height: 8rem;
+}
+
+.card-highlights {
+  font-size: 1.4rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #edeeee;
+  margin-bottom: 1.5rem;
+  min-height: 50rem;
+}
+
+.card-highlights--list {
+  margin-left: 2rem;
+}
+
+.card-tac {
+  min-height: 2rem;
 }
 </style>

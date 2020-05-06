@@ -42,11 +42,11 @@
         </div>
       </div>
     </div>
-    <div v-if="cardsSuggested" class="container blk__copy card-list">
-      <div class="text">
+    <div v-if="cardsSuggested" class="container blk__copy">
+      <div class="card-list">
         <h1 class="card-intro-text">{{cardsSuggested.intro_text}}</h1>
-        <CardInfo v-if="cardsSuggested.card1" :card="cardsSuggested.card1" />
-        <CardInfo v-if="cardsSuggested.card2" :card="cardsSuggested.card2" />
+        <CardInfo v-if="cardsSuggested.card1" :card="cardsSuggested.card1" class="card-details1" />
+        <CardInfo v-if="cardsSuggested.card2" :card="cardsSuggested.card2" class="card-details2" />
       </div>
     </div>
   </div>
@@ -81,7 +81,6 @@ export default {
         )
         .then(res => {
           this.cardsSuggested = res.data[0];
-          console.log(res.data);
         })
         .catch(err => {
           console.log(err);
@@ -116,12 +115,6 @@ export default {
   padding-bottom: 3rem;
 }
 
-.card-list {
-  min-height: 1rem;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid lightgray;
-}
-
 .text {
   color: #fff;
   grid-column: 2/12;
@@ -139,11 +132,33 @@ export default {
   font-size: 14px;
 }
 
+.card-list {
+  display: grid;
+  grid-template-rows: minmax(5rem, 15rem) 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "Intro Intro"
+    "Card1 Card2";
+  grid-column: 3/11;
+  min-height: 1rem;
+  margin-bottom: 1rem;
+}
+
 .card-intro-text {
+  grid-area: Intro;
   color: #1c1d20;
   font-size: 1.6rem;
   font-weight: normal;
 }
+
+.card-details1 {
+  grid-area: Card1;
+}
+
+.card-details2 {
+  grid-area: Card2;
+}
+
 .tiles {
   grid-row: 2;
 }
