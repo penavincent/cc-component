@@ -4,7 +4,7 @@
     <div class="card-overview" :class="{'card-overview--alone': alone}">
       <img class="card-overview--img" :src="card.offer_image" :alt="card.offer_name" />
       <h2 class="card-overview--title">{{card.offer_name}}</h2>
-      <CardRating :rating="card.star_rating" />
+      <card-rating :rating="card.star_rating" />
       <h3 class="card-section-name">WHY APPLY</h3>
       <span v-html="card.bottom_line" class="card-overview--bottom-line"></span>
       <a class="review-link" :href="card.review_url">Read Full Review</a>

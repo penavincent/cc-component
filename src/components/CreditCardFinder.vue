@@ -11,7 +11,7 @@
       <div class="tiles blk__copy blk-action_tile_list">
         <div class="grid grid--int grid--mob">
           <div class="tile-wrap">
-            <ActTile
+            <act-tile
               v-for="score in creditScores"
               :key="score.value"
               :text="score.display"
@@ -33,7 +33,7 @@
       <div class="tiles blk__copy blk-action_tile_list">
         <div class="grid grid--int grid--mob">
           <div class="tile-wrap">
-            <ActTile
+            <act-tile
               v-for="type in cardTypes"
               :key="type.value"
               :text="type.display"
@@ -47,7 +47,7 @@
     </div>
 
     <!-- Loader -->
-    <Loader v-if="loading" class="loader" />
+    <loader-icon v-if="loading" class="loader" />
 
     <!-- Error with API -->
     <h1
@@ -65,7 +65,7 @@
       <div v-else class="card-list">
         <h1 class="card-intro-text">{{cardsSuggested.intro_text}}</h1>
         <div class="card-details-wrap" :class="{'card-details-wrap--alone': !cardsSuggested.card2}">
-          <CardInfo
+          <card-info
             v-if="cardsSuggested.card1 && !cardsSuggested.card1.hide_card"
             :expand="highlights"
             :card="cardsSuggested.card1"
@@ -74,7 +74,7 @@
             :alone="!cardsSuggested.card2"
             @expand-highlights="highlights = !highlights"
           />
-          <CardInfo
+          <card-info
             v-if="cardsSuggested.card2 && !cardsSuggested.card2.hide_card"
             :expand="highlights"
             :card="cardsSuggested.card2"
@@ -92,15 +92,14 @@ import axios from "axios";
 
 import ActTile from "./ActTile";
 import CardInfo from "./CardInfo";
-import Loader from "./Loader";
+import LoaderIcon from "./LoaderIcon";
 
 import cardTypes from "../assets/cardTypes";
 import creditScores from "../assets/creditScores";
 
 export default {
   name: "CreditCardFinder",
-  components: { ActTile, CardInfo, Loader },
-  computed: {},
+  components: { ActTile, CardInfo, LoaderIcon },
   methods: {
     next(selectedScore) {
       this.selectedScore = selectedScore;

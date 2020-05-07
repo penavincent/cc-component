@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "Breadcrumbs"
+  name: "BreadCrumbs"
 };
 </script>
 
