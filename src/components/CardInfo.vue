@@ -25,15 +25,15 @@
 
     <!-- Details: Additional details like Rewards, Annual Fees, APR, and Bonuses -->
     <div class="card-details" :class="{'card-details--alone': alone}">
-      <div class="card-details--section">
+      <div class="card-details--section" :class="{'card-details--section--alone': alone}">
         <h3 class="card-section-name">REWARDS</h3>
         <p>{{card.rewards_program}}</p>
       </div>
-      <div class="card-details--section">
+      <div class="card-details--section" :class="{'card-details--section--alone': alone}">
         <h3 class="card-section-name">ANNUAL FEE</h3>
         <p>{{card.annual_fee}}</p>
       </div>
-      <div class="card-details--section">
+      <div class="card-details--section" :class="{'card-details--section--alone': alone}">
         <h3 class="card-section-name">INTRO APR</h3>
         <strong>Purchases: &nbsp;</strong>
         <span>{{card.intro_purchase_apr}}</span>
@@ -44,7 +44,7 @@
         <strong>Ongoing APR: &nbsp;</strong>
         <span>{{card.regular_apr}}</span>
       </div>
-      <div class="card-details--section">
+      <div class="card-details--section" :class="{'card-details--section--alone': alone}">
         <h3 class="card-section-name">BONUSES & PERKS</h3>
         <p>{{card.bonus}}</p>
       </div>
@@ -57,6 +57,7 @@
     </div>
     <span
       class="card-highlights--expand"
+      :class="{'card-highlights--expand--alone': alone}"
       @click="$emit('expand-highlights')"
     >Card Details [{{expandIcon}}]</span>
 
@@ -248,14 +249,14 @@ export default {
   .card-container--alone {
     -ms-grid-columns: 1fr;
     -ms-grid-rows: 50rem 10rem 55rem 65rem 3rem 2rem;
-    grid-template-columns: minmax(280px, 1fr) 2fr;
-    grid-template-rows: auto 1fr 3rem;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto auto minmax(0.5rem, auto) 3rem;
     grid-template-areas:
       "Overview Details"
+      "Apply Details"
       "Highlights Highlights"
-      "Expand TAC-Link";
+      "Expand TAC";
     padding: 3rem 2rem;
-    width: auto;
   }
 
   .card-overview--alone {
@@ -265,24 +266,55 @@ export default {
   }
 
   .card-apply--alone {
-    grid-area: Overview;
-    align-self: flex-end;
+    grid-area: Apply;
+    width: 100%;
+    margin-bottom: 1rem;
   }
 
   .card-details--alone {
     -ms-grid-row: 3;
     grid-area: Details;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     border-bottom: none;
+    padding: 0 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-details--section--alone {
+    padding: 0.5rem 1rem;
+    min-height: 10rem;
+    width: 100%;
+  }
+
+  card-highlights--alone {
+    /* -ms-grid-row: 4; */
+    grid-area: Highlights;
+    font-size: 1.4rem;
     padding-bottom: 1.5rem;
+    width: 100%;
+    border-bottom: 1px solid #edeeee;
     margin-bottom: 1.5rem;
   }
 
-  .card-details--section {
-    padding: 0.8rem 1.2rem;
-    border-radius: 4px;
-    margin-bottom: 0.8rem;
-    min-height: 10rem;
-    width: auto;
+  .card-highlights--list--alone {
+    /* margin-left: 2rem;
+    width: 100%;
+    transition: max-height 300ms ease-in-out;
+    will-change: max-height; */
+  }
+
+  .card-highlights--expand--alone {
+    -ms-grid-row: 5;
+    grid-area: Expand;
+    justify-self: flex-start;
+  }
+
+  .card-tac--alone {
+    -ms-grid-row: 6;
+    grid-area: TAC;
+    justify-self: flex-end;
   }
 }
 
