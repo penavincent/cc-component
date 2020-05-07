@@ -47,6 +47,9 @@
       </div>
     </div>
 
+    <!-- Loader -->
+    <Loader v-if="loading" class="loader" />
+
     <!-- Card suggestions based on choices -->
     <div v-if="cardsSuggested" class="container blk__copy">
       <div
@@ -82,13 +85,14 @@ import axios from "axios";
 
 import ActTile from "./ActTile";
 import CardInfo from "./CardInfo";
+import Loader from "./Loader";
 
 import cardTypes from "../assets/cardTypes";
 import creditScores from "../assets/creditScores";
 
 export default {
   name: "CreditCardFinder",
-  components: { ActTile, CardInfo },
+  components: { ActTile, CardInfo, Loader },
   computed: {
     isChosenType(cardType) {
       if (this.chosenCardType) {
@@ -189,6 +193,13 @@ export default {
   margin-bottom: 1rem;
 }
 
+.loader {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 10;
+  grid-column: 2/12;
+  margin: 1.5rem auto;
+}
+
 .card-intro-text {
   -ms-grid-row: 1;
   grid-area: Intro;
@@ -222,6 +233,7 @@ export default {
     "Card1"
     "Card2";
 }
+
 .card-details1 {
   -ms-grid-column: 1;
   grid-area: Card1;
