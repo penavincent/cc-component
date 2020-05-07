@@ -97,6 +97,8 @@ export default {
 <style scoped>
 .card-container {
   display: -ms-grid;
+  -ms-grid-columns: 1fr;
+  -ms-grid-rows: 50rem 10rem 55rem 65rem 3rem 2rem;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows:
@@ -111,11 +113,13 @@ export default {
 }
 
 .no-highlights {
+  -ms-grid-rows: 50rem 10rem 55rem 3rem 2rem;
   grid-template-rows: minmax(48rem, auto) 10rem minmax(55rem, auto) 3rem 2rem;
 }
 
 /* Overview */
 .card-overview {
+  -ms-grid-row: 1;
   display: flex;
   align-self: flex-start;
   flex-direction: column;
@@ -153,6 +157,7 @@ export default {
 
 /* Apply Button */
 .card-apply {
+  -ms-grid-row: 2;
   padding: 1.5rem 0;
 }
 
@@ -188,6 +193,7 @@ export default {
 
 /* Card Details */
 .card-details {
+  -ms-grid-row: 3;
   border-bottom: 1px solid lightgray;
   padding-bottom: 1.5rem;
   margin-bottom: 1.5rem;
@@ -204,6 +210,7 @@ export default {
 
 /* Card Highlight */
 .card-highlights {
+  -ms-grid-row: 4;
   font-size: 1.4rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #edeeee;
@@ -217,6 +224,7 @@ export default {
 }
 
 .card-highlights--expand {
+  -ms-grid-row: 5;
   font-size: 1.4rem;
   color: #ac145a;
   cursor: pointer;
@@ -225,6 +233,7 @@ export default {
 
 /* TOS link */
 .card-tac {
+  -ms-grid-row: 6;
   min-height: 2rem;
 }
 

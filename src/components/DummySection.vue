@@ -20,6 +20,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  -ms-grid-column: 1;
   grid-column: 1/-1;
   height: 40rem;
   color: #afafaf;

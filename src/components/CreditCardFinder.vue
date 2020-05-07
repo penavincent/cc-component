@@ -139,6 +139,11 @@ export default {
 
 <style scoped>
 .container {
+  /* display: -ms-grid; */
+  /* -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
+  /* -ms-grid-rows: 1fr 1fr 1fr; */
+  -ms-grid-column: 1;
+  -ms-grid-column-end: -1;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto;
@@ -168,6 +173,11 @@ export default {
 }
 
 .card-list {
+  display: -ms-grid;
+  -ms-grid-rows: minmax(5rem, 15rem) 1fr;
+  -ms-grid-columns: 1fr;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 10;
   display: grid;
   grid-template-rows: minmax(5rem, 15rem) 1fr;
   grid-template-columns: 1fr;
@@ -180,6 +190,7 @@ export default {
 }
 
 .card-intro-text {
+  -ms-grid-row: 1;
   grid-area: Intro;
   color: #1c1d20;
   padding: 2rem 0;
@@ -190,6 +201,8 @@ export default {
 }
 
 .card-error-text {
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 8;
   grid-column: 3/11;
   padding: 2rem 0;
   font-size: 1.6rem;
@@ -198,6 +211,9 @@ export default {
 }
 
 .card-details-wrap {
+  display: -ms-grid;
+  -ms-grid-row: 2;
+  -ms-grid-columns: 1fr 1fr;
   display: grid;
   grid-area: Cards;
   grid-auto-rows: 1fr;
@@ -207,22 +223,32 @@ export default {
     "Card2";
 }
 .card-details1 {
+  -ms-grid-column: 1;
   grid-area: Card1;
   justify-self: center;
+  margin: 0 auto;
 }
 
 .card-details2 {
+  -ms-grid-column: 2;
   grid-area: Card2;
   justify-self: center;
+  margin: 0 auto;
 }
 
 .tiles {
+  -ms-grid-row: 2;
   grid-row: 2;
 }
 
 .tile-wrap {
-  display: -ms-grid;
-  -ms-grid-columns: 1fr 1fr;
+  /* display: -ms-grid; */
+  /* -ms-grid-columns: 1fr 1fr; */
+  /* -ms-grid-column-start: 1; */
+  display: -ms-flexbox;
+  -ms-flex-direction: row;
+  -ms-flex-align: center;
+  -ms-grid-column: 1;
   display: grid;
   grid-column: 1;
   grid-template-columns: repeat(2, 1fr);
@@ -234,7 +260,6 @@ export default {
 
 @media (min-width: 768px) {
   .tile-wrap {
-    -ms-grid-columns: 1fr 1fr 1fr 1fr;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 2rem;
     padding: 1rem 8% 2rem;
@@ -249,7 +274,8 @@ export default {
   }
 
   .card-list {
-    display: grid;
+    -ms-grid-rows: minmax(5rem, 15rem) 1fr;
+    -ms-grid-columns: 1fr;
     grid-template-rows: minmax(5rem, 15rem) 1fr;
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -258,42 +284,33 @@ export default {
   }
 
   .card-details-wrap {
+    -ms-grid-columns: 1fr 1fr;
     grid-auto-columns: 1fr;
     grid-template-areas: "Card1 Card2";
   }
 }
 
 @media (min-width: 1024px) {
-  .container-text {
+  .container-text,
+  .card-list,
+  .card-error-text {
+    -ms-grid-row: 3;
+    -ms-grid-row-span: 8;
     grid-column: 3/11;
   }
 
   .tile-wrap {
     padding: 0 17.3%;
   }
-
-  .card-list {
-    grid-column: 3/11;
-  }
-
-  .card-error-text {
-    grid-column: 3/11;
-  }
 }
 
 @media (min-width: 2560px) {
-  .container-text {
-    -ms-grid-column-start: 4;
-    -ms-grid-column-span: 7;
-    grid-column: 4 / 10;
-  }
-
-  .card-list {
-    grid-column: 4/10;
-  }
-
+  .container-text,
+  .card-list,
   .card-error-text {
-    grid-row: 4/10;
+    -ms-grid-column: 4;
+    -ms-grid-column-span: 6;
+    grid-column: 4 / 10;
   }
 }
 </style>

@@ -87,7 +87,7 @@ body {
 }
 
 .blk__copy {
-  -ms-grid-columns-start: 2;
+  -ms-grid-column: 2;
   -ms-grid-column-span: 10;
   grid-column: 2 / 12;
   clear: both;
@@ -95,7 +95,7 @@ body {
 
 .blk--int {
   display: -ms-grid;
-  -ms-grid-columns-start: 2;
+  -ms-grid-column: 2;
   -ms-grid-column-span: 10;
   display: grid;
   position: relative;
@@ -106,8 +106,9 @@ body {
 
 .blk-action_tile_list {
   -ms-grid-columns: 1fr 1fr;
-  grid-column: 1 / -1;
   grid-template-columns: 1fr;
+  grid-column: 1 / -1;
+  -ms-grid-column: 1;
 }
 
 a {
@@ -134,7 +135,7 @@ a {
 
 @media (min-width: 1024) {
   .blk--int {
-    -ms-grid-column-start: 3;
+    -ms-grid-column: 3;
     -ms-grid-column-span: 9;
     grid-column: 3/11;
   }
