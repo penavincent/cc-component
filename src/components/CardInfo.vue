@@ -260,19 +260,23 @@ export default {
   }
 
   .card-overview--alone {
-    -ms-grid-row: 1;
     -ms-grid-column: 1;
+    -ms-grid-row: 1;
     grid-area: Overview;
   }
 
   .card-apply--alone {
+    -ms-grid-column: 1;
+    -ms-grid-row: 2;
     grid-area: Apply;
     width: 100%;
     margin-bottom: 1rem;
   }
 
   .card-details--alone {
-    -ms-grid-row: 3;
+    -ms-grid-column: 2;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
     grid-area: Details;
     display: flex;
     flex-direction: column;
@@ -289,30 +293,23 @@ export default {
   }
 
   card-highlights--alone {
-    /* -ms-grid-row: 4; */
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    -ms-grid-row: 3;
     grid-area: Highlights;
-    font-size: 1.4rem;
-    padding-bottom: 1.5rem;
     width: 100%;
-    border-bottom: 1px solid #edeeee;
-    margin-bottom: 1.5rem;
-  }
-
-  .card-highlights--list--alone {
-    /* margin-left: 2rem;
-    width: 100%;
-    transition: max-height 300ms ease-in-out;
-    will-change: max-height; */
   }
 
   .card-highlights--expand--alone {
-    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+    -ms-grid-row: 4;
     grid-area: Expand;
     justify-self: flex-start;
   }
 
   .card-tac--alone {
-    -ms-grid-row: 6;
+    -ms-grid-column: 2;
+    -ms-grid-row: 4;
     grid-area: TAC;
     justify-self: flex-end;
   }
