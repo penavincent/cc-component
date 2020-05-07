@@ -47,7 +47,7 @@
     </div>
 
     <!-- Loader -->
-    <loader-icon v-if="loading" class="loader" />
+    <base-loader v-if="loading" class="loader" />
 
     <!-- Error with API -->
     <h1
@@ -92,14 +92,14 @@ import axios from "axios";
 
 import ActTile from "./ActTile";
 import CardInfo from "./CardInfo";
-import LoaderIcon from "./LoaderIcon";
+import BaseLoader from "./BaseLoader";
 
 import cardTypes from "../assets/cardTypes";
 import creditScores from "../assets/creditScores";
 
 export default {
   name: "CreditCardFinder",
-  components: { ActTile, CardInfo, LoaderIcon },
+  components: { ActTile, CardInfo, BaseLoader },
   methods: {
     next(selectedScore) {
       this.selectedScore = selectedScore;

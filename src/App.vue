@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <dummy-header />
+    <dummy-header></dummy-header>
     <!-- Main container wrapping the whole page -->
     <div class="main-contain" role="main">
       <!-- Header Section -->
@@ -9,9 +9,9 @@
       </div>
       <!-- Page Content section -->
       <div class="copy__main" id="main-copy">
-        <DummySection text="Dummy Hero" />
+        <dummy-section text="Dummy Hero" />
         <credit-card-finder />
-        <DummySection text="Dummy Secondary Section" />
+        <dummy-section text="Dummy Secondary Section" />
       </div>
     </div>
     <!-- Disclosure section -->
