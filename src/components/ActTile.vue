@@ -1,18 +1,8 @@
 <template>
-  <a
-    class="act-tile act-tile--land"
-    :class="{chosen}"
-    @mouseover="hover = true"
-    @mouseleave="hover = false"
-  >
+  <a class="act-tile act-tile--land" @mouseover="hover = true" @mouseleave="hover = false">
     <div v-if="image && imageHover" class="tile__img-wrap">
-      <img v-show="!hover && !chosen" class="tile__img" :src="image" :alt="text + ' icon'" />
-      <img
-        v-show="hover || chosen"
-        class="tile__img--hover"
-        :src="imageHover"
-        :alt="text + ' icon'"
-      />
+      <img v-show="!hover" class="tile__img" :src="image" :alt="text + ' icon'" />
+      <img v-show="hover" class="tile__img--hover" :src="imageHover" :alt="text + ' icon'" />
     </div>
     <span :class="{'tile__title': true, 'textonly': !image && !imageHover}">{{text}}</span>
   </a>
@@ -24,8 +14,7 @@ export default {
   props: {
     text: String,
     image: String,
-    imageHover: String,
-    chosen: Boolean
+    imageHover: String
   },
   data() {
     return {
@@ -67,8 +56,7 @@ a {
   transition: 0.2s ease all;
 }
 
-.act-tile--land:hover,
-.chosen {
+.act-tile--land:hover {
   background-color: #204060;
   color: #fff;
 }

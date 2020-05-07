@@ -39,7 +39,6 @@
               :text="type.display"
               :image="type.image"
               :imageHover="type.imageHover"
-              :chosen="type === chosenCardType"
               @click.native="submit(type.value)"
             />
           </div>
@@ -50,8 +49,14 @@
     <!-- Loader -->
     <Loader v-if="loading" class="loader" />
 
+    <!-- Error with API -->
+    <h1
+      v-if="error"
+      class="card-error-text"
+    >Oops, seems like we are having issues on our end. Worry not though, as we're already working on it!</h1>
+
     <!-- Card suggestions based on choices -->
-    <div v-if="cardsSuggested" class="container blk__copy">
+    <div v-if="cardsSuggested && !loading && !error" class="container blk__copy">
       <div
         v-if="cardsSuggested.error_text"
         class="card-error-text"
@@ -93,36 +98,26 @@ import creditScores from "../assets/creditScores";
 export default {
   name: "CreditCardFinder",
   components: { ActTile, CardInfo, Loader },
-  computed: {
-    isChosenType(cardType) {
-      if (this.chosenCardType) {
-        return this.chosenCardType === cardType;
-      }
-
-      return false;
-    }
-  },
+  computed: {},
   methods: {
-    prev() {
-      --this.step;
-    },
-    next(chosenScore) {
-      this.chosenScore = chosenScore;
+    next(selectedScore) {
+      this.selectedScore = selectedScore;
       ++this.step;
     },
-    async submit(chosenCardType) {
+    async submit(selectedCardType) {
       this.loading = true;
-      this.chosenCardType = chosenCardType;
+      this.selectedCardType = selectedCardType;
+
       axios
         .get(
-          `${process.env.VUE_APP_API_URL}/api/recommendations?score=${this.chosenScore}&usage=${this.chosenCardType}`
+          `${process.env.VUE_APP_API_URL}/api/recommendations?score=${this.selectedScore}&usage=${this.selectedCardType}`
         )
         .then(res => {
           this.cardsSuggested = res.data[0];
         })
         .catch(err => {
           console.log(err);
-          this.errored = err;
+          this.error = err;
         })
         .finally(() => (this.loading = false));
     }
@@ -131,10 +126,10 @@ export default {
     creditScores,
     cardTypes,
     step: 1,
-    chosenScore: null,
-    chosenCardType: null,
+    selectedScore: null,
+    selectedCardType: null,
     loading: false,
-    errored: false,
+    error: false,
     cardsSuggested: null,
     highlights: false
   })
@@ -198,6 +193,14 @@ export default {
   -ms-grid-column-span: 10;
   grid-column: 2/12;
   margin: 1.5rem auto;
+}
+
+.card-error-text {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 10;
+  font-size: 1.6rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .card-intro-text {
