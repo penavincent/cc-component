@@ -1,7 +1,7 @@
 <template>
-  <div class="card-container" :class="{'no-highlights': !expand}">
+  <div class="card-container" :class="{'no-highlights': !expand, 'card-container--alone': alone}">
     <!-- Overview: Card image, Name, Rating, and Summary -->
-    <div class="card-overview">
+    <div class="card-overview" :class="{'card-overview--alone': alone}">
       <img class="card-overview--img" :src="card.offer_image" :alt="card.offer_name" />
       <h2 class="card-overview--title">{{card.offer_name}}</h2>
       <CardRating :rating="card.star_rating" />
@@ -11,20 +11,20 @@
     </div>
 
     <!-- Application: Card Apply Button -->
-    <div v-if="affiliateLink" class="card-apply">
+    <div v-if="affiliateLink" class="card-apply" :class="{'card-apply--alone': alone}">
       <a :href="card.affiliate_link" class="apply-btn-wrap" target="_blank">
         <span class="apply-btn">Apply Now</span>
       </a>
       <p class="apply-disclaim">On {{card.issuer.possessive_name}} Secure Website</p>
     </div>
-    <div v-else class="card-apply">
+    <div v-else class="card-apply" :class="{'card-apply--alone': alone}">
       <a :href="card.review_url" class="apply-btn-wrap" target="_blank">
         <span class="apply-btn">Read Full Review</span>
       </a>
     </div>
 
     <!-- Details: Additional details like Rewards, Annual Fees, APR, and Bonuses -->
-    <div class="card-details">
+    <div class="card-details" :class="{'card-details--alone': alone}">
       <div class="card-details--section">
         <h3 class="card-section-name">REWARDS</h3>
         <p>{{card.rewards_program}}</p>
@@ -51,7 +51,7 @@
     </div>
 
     <!-- Highlights: Marketing points for the card -->
-    <div v-if="expand" class="card-highlights">
+    <div v-if="expand" class="card-highlights" :class="{'card-highlights--alone': alone}">
       <h3 class="card-section-name">HIGHLIGHTS</h3>
       <div class="card-highlights--list" v-html="card.marketing_bullets" />
     </div>
@@ -61,7 +61,12 @@
     >Card Details [{{expandIcon}}]</span>
 
     <!-- Link to card's terms and conditions -->
-    <a :href="card.terms_and_conditions_link" class="card-tac" target="_blank">
+    <a
+      :href="card.terms_and_conditions_link"
+      class="card-tac"
+      :class="{'card-tac--alone': alone}"
+      target="_blank"
+    >
       Rates and Fees
       <img
         src="https://g.foolcdn.com/static/affiliates/project/images/icon_external_link.svg"
@@ -89,7 +94,8 @@ export default {
   },
   props: {
     card: Object,
-    expand: Boolean
+    expand: Boolean,
+    alone: Boolean
   }
 };
 </script>
@@ -225,16 +231,59 @@ export default {
 
 .card-highlights--expand {
   -ms-grid-row: 5;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: #ac145a;
   cursor: pointer;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 }
 
 /* TOS link */
 .card-tac {
   -ms-grid-row: 6;
   min-height: 2rem;
+}
+
+/* Rules for when the component is alone, and display is above 768px */
+@media (min-width: 768px) {
+  .card-container--alone {
+    -ms-grid-columns: 1fr;
+    -ms-grid-rows: 50rem 10rem 55rem 65rem 3rem 2rem;
+    grid-template-columns: minmax(280px, 1fr) 2fr;
+    grid-template-rows: auto 1fr 3rem;
+    grid-template-areas:
+      "Overview Details"
+      "Highlights Highlights"
+      "Expand TAC-Link";
+    padding: 3rem 2rem;
+    width: auto;
+  }
+
+  .card-overview--alone {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: Overview;
+  }
+
+  .card-apply--alone {
+    grid-area: Overview;
+    align-self: flex-end;
+  }
+
+  .card-details--alone {
+    -ms-grid-row: 3;
+    grid-area: Details;
+    border-bottom: none;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-details--section {
+    padding: 0.8rem 1.2rem;
+    border-radius: 4px;
+    margin-bottom: 0.8rem;
+    min-height: 10rem;
+    width: auto;
+  }
 }
 
 @media (min-width: 1024px) {
