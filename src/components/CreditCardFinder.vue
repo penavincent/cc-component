@@ -64,12 +64,14 @@
       />
       <div v-else class="card-list">
         <h1 class="card-intro-text">{{cardsSuggested.intro_text}}</h1>
-        <div class="card-details-wrap">
+        <div class="card-details-wrap" :class="{'card-details-wrap--alone': !cardsSuggested.card2}">
           <CardInfo
             v-if="cardsSuggested.card1 && !cardsSuggested.card1.hide_card"
             :expand="highlights"
             :card="cardsSuggested.card1"
             class="card-details1"
+            :class="{'card-details1--alone': !cardsSuggested.card2}"
+            :alone="!cardsSuggested.card2"
             @expand-highlights="highlights = !highlights"
           />
           <CardInfo
@@ -138,11 +140,7 @@ export default {
 
 <style scoped>
 .container {
-  /* display: -ms-grid; */
-  /* -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
-  /* -ms-grid-rows: 1fr 1fr 1fr; */
   -ms-grid-column: 1;
-  -ms-grid-column-end: -1;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto;
@@ -257,9 +255,6 @@ export default {
 }
 
 .tile-wrap {
-  /* display: -ms-grid; */
-  /* -ms-grid-columns: 1fr 1fr; */
-  /* -ms-grid-column-start: 1; */
   display: -ms-flexbox;
   -ms-flex-direction: row;
   -ms-flex-align: center;
@@ -302,6 +297,17 @@ export default {
     -ms-grid-columns: 1fr 1fr;
     grid-auto-columns: 1fr;
     grid-template-areas: "Card1 Card2";
+  }
+
+  .card-details-wrap--alone {
+    -ms-grid-columns: 1fr 1fr;
+    grid-columns: 1fr;
+    grid-template-areas: "Card1";
+  }
+
+  .card-details1--alone {
+    width: 100%;
+    margin: 0;
   }
 }
 
