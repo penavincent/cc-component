@@ -13,6 +13,7 @@
           <div class="tile-wrap">
             <act-tile
               v-for="score in creditScores"
+              :id="score.value"
               :key="score.value"
               :text="score.display"
               @click.native="next(score.value)"
@@ -35,6 +36,7 @@
           <div class="tile-wrap">
             <act-tile
               v-for="type in cardTypes"
+              :id="type.value"
               :key="type.value"
               :text="type.display"
               :image="type.image"
